@@ -22,9 +22,9 @@ test('buscar', async ({ page }) => {
     //Este console muestra la longitud de toda la lista almacenada en const tittles.
   for(let title of titles){
       console.log('the title is:', title)
-  }
-  await page.pause()
+  }  
   // por medio de este ciclo for se itera por toda lista que se almaceno dentro de la variable const titles.
+  await page.pause()
 });
 
 //test('Otros metodos', async ({ page }) => {
