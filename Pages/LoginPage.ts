@@ -13,13 +13,21 @@ export class LoginPage {
         this.loginButton = page.getByRole('button', { name: 'Login'});
     }
 
+    async goto(){
+        await this.page.goto('https://www.saucedemo.com/');
+
+    }
+
     async login(user: string, pass: string){
         await this.userNameInput.fill (user);
         await this.userPasswordInput.fill (pass);
-        await this.loginButton.click();
+        await Promise.all([
+            this.page.waitForURL('**/inventory.html'),
+            this.loginButton.click()
+        ])
     }
 
     async assertLoginSucess(){
-        await expect (this.page).toHaveURL('https://www.saucedemo.com/inventory.html');
+        await expect (this.page).toHaveURL(/inventory.html/);
     }
 }

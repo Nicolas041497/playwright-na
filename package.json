@@ -6,7 +6,9 @@
   "scripts": {
     "test": "playwright test",
     "test:smoke": "playwright test --grep @smoke",
-    "test-regression": "playwright-test --grep @regression",
+    "test:login": "playwright test --grep @login",
+    "test:regression": "playwright test --grep @regression",
+    "test:bdd": "cucumber-js --require-module ts-node/register --require steps/**/*.ts features/**/*.feature",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug"
@@ -15,8 +17,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cucumber/cucumber": "^12.4.0",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.3.0",
-    "dotenv": "^17.2.1"
+    "dotenv": "^17.2.1",
+    "playwright-bdd": "^8.4.2",
+    "ts-node": "^10.9.2"
   }
 }

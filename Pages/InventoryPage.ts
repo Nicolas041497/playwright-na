@@ -2,11 +2,22 @@ import { Page, Locator, expect } from '@playwright/test';
 
     export class InventoryPage {
         readonly page: Page;
+        readonly inventoryContainer: Locator;
         readonly inventoryItems: Locator;
 
     constructor (page: Page){
         this.page = page;
-        this.inventoryItems = page.locator('#inventory_container .inventory_item');
+        this.inventoryContainer = page.locator('[data-test="inventory-container"]');
+        this.inventoryItems = this.inventoryContainer.locator('#inventory_container .inventory_item');
+    }    
+
+    async assertInventoryIsVisible(){
+        await this.inventoryContainer.waitFor({
+            state: 'visible',
+            timeout:10000,
+        });
+
+        await expect(this.inventoryContainer).toBeVisible();
     }
 
     async getInventoryItems() {
