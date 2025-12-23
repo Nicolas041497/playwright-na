@@ -11,7 +11,7 @@ export class CustomWorld {
   inventoryPage!: InventoryPage;
 
   async init() {
-    this.browser = await chromium.launch({ headless: false });
+    this.browser = await chromium.launch({ headless: true, args:['--no-sandbox', '--disable-setuid-sandbox'] });
     this.context = await this.browser.newContext();
     this.page = await this.context.newPage();
 
@@ -20,8 +20,12 @@ export class CustomWorld {
   }
 
   async cleanup() {
-    await this.browser.close();
-  }
+    try{
+      if (this.page) await this.page.close();
+      if (this.context) await this.context.close();
+      if (this.browser) await this.browser.close();
+  } catch (error){}
+}
 }
 
 setWorldConstructor(CustomWorld);
