@@ -13,9 +13,9 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
 
-  timeout: 60_000,
+  timeout: 60000,
     expect: {
-        timeout:200_000
+        timeout:200000
     },
 
   testDir: './tests',
@@ -31,7 +31,9 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless: false,
+    actionTimeout:10000,
+    navigationTimeout: 15000,
+    headless: true,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 

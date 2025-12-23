@@ -30,7 +30,8 @@ import { Page, Locator, expect } from '@playwright/test';
 
         const randomIndex = Math.floor(Math.random() * items.length);
         return items[randomIndex];
-        }        
+        }                
     }
+    
 
     

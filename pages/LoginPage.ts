@@ -21,10 +21,8 @@ export class LoginPage {
     async login(user: string, pass: string){
         await this.userNameInput.fill (user);
         await this.userPasswordInput.fill (pass);
-        await Promise.all([
-            this.page.waitForURL('**/inventory.html'),
-            this.loginButton.click()
-        ])
+        await this.loginButton.click()
+        
     }
 
     async assertLoginSucess(){
